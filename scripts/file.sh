@@ -86,15 +86,15 @@ chmod +x ./ec2-instance-selector-linux-amd64
 mv ./ec2-instance-selector-linux-amd64 /usr/local/bin/ec2-instance-selector
 
 # Download & install k9s
-curl -sS https://webinstall.dev/k9s | bash
+#curl -sS https://webinstall.dev/k9s | bash
 
 # Download & install jq, envsubst (from GNU gettext utilities) and bash-completion
 sudo yum -y install jq gettext bash-completion moreutils
 
-# Download & install yq for yaml processing
-echo 'yq() {
-  docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
-}' | tee -a ~/.bashrc && source ~/.bashrc
+# # Download & install yq for yaml processing
+# echo 'yq() {
+#   docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
+# }' | tee -a ~/.bashrc && source ~/.bashrc
 
 # Verify the binaries are in the path and executable
 for command in kubectl jq envsubst aws
