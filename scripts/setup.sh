@@ -21,14 +21,6 @@ EOT
 
 touch ~/.bashrc.d/workshop-env.bash
 
-cat << EOT > /home/ec2-user/.bashrc.d/aliases.bash
-function prepare-environment() { 
-  bash /usr/local/bin/reset-environment \$1
-  exit_code=\$?
-  source ~/.bashrc.d/workshop-env.bash
-  return \$exit_code
-}
-EOT
 
 REPOSITORY_OWNER=${REPOSITORY_OWNER:-"s3curitydojolab"}
 REPOSITORY_NAME=${REPOSITORY_NAME:-"cloud9-eks"}
