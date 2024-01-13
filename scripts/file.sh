@@ -17,7 +17,6 @@ kubeseal_checksum='2e765b87889bfcf06a6249cde8e28507e3b7be29851e4fac651853f7638f1
 yq_version='4.30.4'
 yq_checksum='30459aa144a26125a1b22c62760f9b3872123233a5658934f7bd9fe714d7864d'
 
-
 ec2_instance_selector_version='2.4.1'
 ec2_instance_selector_checksum='dfd6560a39c98b97ab99a34fc261b6209fc4eec87b0bc981d052f3b13705e9ff'
 
@@ -77,9 +76,9 @@ download_and_verify "https://github.com/mikefarah/yq/releases/download/v${yq_ver
 chmod +x ./yq
 mv ./yq /usr/local/bin
 
-# terraform using Yum
-yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo && yum makecache fast
-yum -y install terraform-1.5.5-1.x86_64
+# # terraform using Yum
+# yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo && yum makecache fast
+# yum -y install terraform-1.5.5-1.x86_64
 
 # ec2 instance selector
 download_and_verify "https://github.com/aws/amazon-ec2-instance-selector/releases/download/v${ec2_instance_selector_version}/ec2-instance-selector-linux-amd64" "$ec2_instance_selector_checksum" "ec2-instance-selector-linux-amd64"
