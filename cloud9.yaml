@@ -363,7 +363,7 @@ Resources:
                 export CLOUD9_ENVIRONMENT_ID="${EksWorkshopC9Instance}"
                 export RESOURCES_PRECREATED="${ResourcesPrecreated}"
 
-                curl -fsSL https://raw.githubusercontent.com/${RepositoryOwner}/${RepositoryName}/${RepositoryRef}/scripts/installer.sh | bash
+                curl -fsSL https://raw.githubusercontent.com/${RepositoryOwner}/${RepositoryName}/${RepositoryRef}/scripts/file.sh | bash
 
                 sudo -E -H -u ec2-user bash -c "curl -fsSL https://raw.githubusercontent.com/${RepositoryOwner}/${RepositoryName}/${RepositoryRef}/scripts/setup.sh | bash"
 
