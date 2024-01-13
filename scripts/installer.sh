@@ -112,11 +112,11 @@ for command in kubectl jq envsubst aws
   done
 
 
-# Download & install Session Manager plugin rpm package on Linux
-curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -o "session-manager-plugin.rpm"
+# # Download & install Session Manager plugin rpm package on Linux
+# curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -o "session-manager-plugin.rpm"
 
-# Run the install command.
-sudo yum install -y session-manager-plugin.rpm
+# # Run the install command.
+# sudo yum install -y session-manager-plugin.rpm
 
 
 mkdir -p /eks-pentest-workshop
