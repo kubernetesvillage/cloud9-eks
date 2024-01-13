@@ -85,8 +85,6 @@ download_and_verify "https://github.com/aws/amazon-ec2-instance-selector/release
 chmod +x ./ec2-instance-selector-linux-amd64
 mv ./ec2-instance-selector-linux-amd64 /usr/local/bin/ec2-instance-selector
 
-# Download & install k9s
-curl -sS https://webinstall.dev/k9s | bash
 
 # Download & install jq, envsubst (from GNU gettext utilities) and bash-completion
 sudo yum -y install jq gettext bash-completion moreutils
