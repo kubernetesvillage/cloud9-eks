@@ -38,39 +38,39 @@ yum install --quiet -y findutils jq tar gzip zsh git diffutils wget \
   amazon-linux-extras nc yum-utils
 
 pip3 install -q awscurl==0.28 urllib3==1.26.6
-
+echo "here3AA"
 # Download & install kubectl
 download_and_verify "https://dl.k8s.io/release/v$kubectl_version/bin/linux/amd64/kubectl" "$kubectl_checksum" "kubectl"
 chmod +x ./kubectl
 mv ./kubectl /usr/local/bin
-
+echo "herepsappas"
 # Download & install helm
 download_and_verify "https://get.helm.sh/helm-v$helm_version-linux-amd64.tar.gz" "$helm_checksum" "helm.tar.gz"
 tar zxf helm.tar.gz
 chmod +x linux-amd64/helm
 mv ./linux-amd64/helm /usr/local/bin
 rm -rf linux-amd64/ helm.tar.gz
-
+echo "00"
 # Download & install eksctl
 download_and_verify "https://github.com/weaveworks/eksctl/releases/download/v$eksctl_version/eksctl_Linux_amd64.tar.gz" "$eksctl_checksum" "eksctl_Linux_amd64.tar.gz"
 tar zxf eksctl_Linux_amd64.tar.gz
 chmod +x eksctl
 mv ./eksctl /usr/local/bin
 rm -rf eksctl_Linux_amd64.tar.gz
-
+echo "123"
 # Download & install aws cli v2
 curl --location --show-error --silent "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip -o -q awscliv2.zip -d /tmp
 /tmp/aws/install --update
 rm -rf /tmp/aws awscliv2.zip
-
+echo "01234"
 # Download & install kubeseal
 download_and_verify "https://github.com/bitnami-labs/sealed-secrets/releases/download/v${kubeseal_version}/kubeseal-${kubeseal_version}-linux-amd64.tar.gz" "$kubeseal_checksum" "kubeseal.tar.gz"
 tar xfz kubeseal.tar.gz
 chmod +x kubeseal
 mv ./kubeseal /usr/local/bin
 rm -rf kubeseal.tar.gz
-
+echo "s90"
 # Download & install yq
 download_and_verify "https://github.com/mikefarah/yq/releases/download/v${yq_version}/yq_linux_amd64" "$yq_checksum" "yq"
 chmod +x ./yq
@@ -81,32 +81,35 @@ mv ./yq /usr/local/bin
 # yum -y install terraform
 
 # ec2 instance selector
+echo "here7"
 download_and_verify "https://github.com/aws/amazon-ec2-instance-selector/releases/download/v${ec2_instance_selector_version}/ec2-instance-selector-linux-amd64" "$ec2_instance_selector_checksum" "ec2-instance-selector-linux-amd64"
 chmod +x ./ec2-instance-selector-linux-amd64
 mv ./ec2-instance-selector-linux-amd64 /usr/local/bin/ec2-instance-selector
-
+echo "here6"
 # Download & install k9s
 #curl -sS https://webinstall.dev/k9s | bash
 
 # Download & install jq, envsubst (from GNU gettext utilities) and bash-completion
+echo "here4"
 sudo yum -y install jq gettext bash-completion moreutils
-
+echo "here3"
 # # Download & install yq for yaml processing
 # echo 'yq() {
 #   docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
 # }' | tee -a ~/.bashrc && source ~/.bashrc
 
 # Verify the binaries are in the path and executable
+echo "here1"
 for command in kubectl jq envsubst aws
   do
     which $command &>/dev/null && echo "$command in path" || echo "$command NOT FOUND"
   done
-
+echo "here2"
 # # Download & install Session Manager plugin rpm package on Linux
 # curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -o "session-manager-plugin.rpm"
 # # Run the install command.
 # sudo yum install -y session-manager-plugin.rpm
-
+echo "here5"
 mkdir -p /eks-pentest-workshop
 
 chown ec2-user /eks-pentest-workshop
