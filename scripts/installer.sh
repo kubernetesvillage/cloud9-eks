@@ -111,10 +111,6 @@ for command in kubectl jq envsubst aws
     which $command &>/dev/null && echo "$command in path" || echo "$command NOT FOUND"
   done
 
-# Enable kubectl bash_completion
-kubectl completion bash >>  ~/.bash_completion
-. /etc/profile.d/bash_completion.sh
-. ~/.bash_completion
 
 # Download & install Session Manager plugin rpm package on Linux
 curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -o "session-manager-plugin.rpm"
