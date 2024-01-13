@@ -76,9 +76,9 @@ download_and_verify "https://github.com/mikefarah/yq/releases/download/v${yq_ver
 chmod +x ./yq
 mv ./yq /usr/local/bin
 
-# # terraform using Yum
-# yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo && yum makecache fast
-# yum -y install terraform-1.5.5-1.x86_64
+# terraform using Yum
+yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo && yum makecache fast
+yum -y install terraform
 
 # ec2 instance selector
 download_and_verify "https://github.com/aws/amazon-ec2-instance-selector/releases/download/v${ec2_instance_selector_version}/ec2-instance-selector-linux-amd64" "$ec2_instance_selector_checksum" "ec2-instance-selector-linux-amd64"
@@ -94,11 +94,11 @@ sudo yum -y install jq gettext bash-completion moreutils
 #   docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
 # }' | tee -a ~/.bashrc && source ~/.bashrc
 
-# # Verify the binaries are in the path and executable
-# for command in kubectl jq envsubst aws
-#   do
-#     which $command &>/dev/null && echo "$command in path" || echo "$command NOT FOUND"
-#   done
+# Verify the binaries are in the path and executable
+for command in kubectl jq envsubst aws
+  do
+    which $command &>/dev/null && echo "$command in path" || echo "$command NOT FOUND"
+  done
 
 # # Download & install Session Manager plugin rpm package on Linux
 # curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -o "session-manager-plugin.rpm"
