@@ -17,15 +17,6 @@ kubeseal_checksum='2e765b87889bfcf06a6249cde8e28507e3b7be29851e4fac651853f7638f1
 yq_version='4.30.4'
 yq_checksum='30459aa144a26125a1b22c62760f9b3872123233a5658934f7bd9fe714d7864d'
 
-flux_version='2.1.0'
-flux_checksum='fe6d32da40d5f876434e964c46bc07d00af138c560e063fdcfa8f73e37224087'
-
-argocd_version='2.7.4'
-argocd_checksum='1b9a5f7c47b3c1326a622533f073cef46511e391d296d9b075f583b474780356'
-
-terraform_version='1.4.1'
-terraform_checksum='9e9f3e6752168dea8ecb3643ea9c18c65d5a52acc06c22453ebc4e3fc2d34421'
-
 ec2_instance_selector_version='2.4.1'
 ec2_instance_selector_checksum='dfd6560a39c98b97ab99a34fc261b6209fc4eec87b0bc981d052f3b13705e9ff'
 
