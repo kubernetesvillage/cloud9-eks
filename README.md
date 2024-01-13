@@ -24,6 +24,10 @@ aws cloudformation describe-stacks --stack-name securitydojo-eks-workshop --quer
 
 - Run the command to delete the CloudFormation Stack for cloud9 instance.
 
+------
+
+Reference: https://www.eksworkshop.com
+
 ```
 aws cloudformation delete-stack --stack-name securitydojo-eks-workshop
 ```
