@@ -105,4 +105,15 @@ resource "aws_eks_addon" "ebs-csi" {
     "eks_addon" = "ebs-csi"
     "terraform" = "true"
   }
-}
+  }
+  
+resource "aws_eks_addon" "cni" {
+  cluster_name = module.eks.cluster_name
+  addon_name   = "vpc-cni"
+  addon_version = "v1.16.2-eksbuild.1"
+  resolve_conflicts    = "OVERWRITE"
+  configuration_values = jsonencode({
+        enableNetworkPolicy : "true",
+      })
+  }    
+
