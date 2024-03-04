@@ -38,6 +38,8 @@ module "vpc" {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/internal-elb"             = 1
   }
+  
+  map_public_ip_on_launch = true
 }
 
 module "eks" {
@@ -48,39 +50,34 @@ module "eks" {
   cluster_version = "1.28"
 
   vpc_id                         = module.vpc.vpc_id
-  subnet_ids                     = module.vpc.private_subnets
+  subnet_ids                     = concat(module.vpc.private_subnets, module.vpc.public_subnets) # This allows the cluster to span both private and public subnets
   cluster_endpoint_public_access = true
 
   eks_managed_node_group_defaults = {
     ami_type = "AL2_x86_64"
-
   }
 
   eks_managed_node_groups = {
-    one = {
-      name = "node-group-1"
-
+    private_group = {
+      name          = "private-node-group"
       instance_types = ["t3.small"]
-
-      min_size     = 1
-      max_size     = 3
-      desired_size = 2
-    }
-
-    two = {
-      name = "node-group-2"
-
+      subnet_ids    = module.vpc.private_subnets
+      min_size      = 1
+      max_size      = 2
+      desired_size  = 1
+    },
+    public_group = {
+      name          = "public-node-group"
       instance_types = ["t3.small"]
-
-      min_size     = 1
-      max_size     = 2
-      desired_size = 1
+      subnet_ids    = module.vpc.public_subnets
+      min_size      = 1
+      max_size      = 2
+      desired_size  = 1
     }
   }
 }
-    
 
-# https://aws.amazon.com/blogs/containers/amazon-ebs-csi-driver-is-now-generally-available-in-amazon-eks-add-ons/ 
+# IAM Roles and Policies for EBS CSI driver
 data "aws_iam_policy" "ebs_csi_policy" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 }
@@ -105,15 +102,14 @@ resource "aws_eks_addon" "ebs-csi" {
     "eks_addon" = "ebs-csi"
     "terraform" = "true"
   }
-  }
-  
-resource "aws_eks_addon" "cni" {
-  cluster_name = module.eks.cluster_name
-  addon_name   = "vpc-cni"
-  addon_version = "v1.16.2-eksbuild.1"
-  resolve_conflicts    = "OVERWRITE"
-  configuration_values = jsonencode({
-        enableNetworkPolicy : "true",
-      })
-  }    
+}
 
+resource "aws_eks_addon" "cni" {
+  cluster_name       = module.eks.cluster_name
+  addon_name         = "vpc-cni"
+  addon_version      = "v1.16.2-eksbuild.1"
+  resolve_conflicts  = "OVERWRITE"
+  configuration_values = jsonencode({
+    enableNetworkPolicy : "true",
+  })
+}
