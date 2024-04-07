@@ -26,6 +26,7 @@ aws cloudformation describe-stacks --stack-name securitydojo-eks-workshop --quer
 ------
 
 Reference: https://www.eksworkshop.com
+Thanks to [AWS-Samples](https://github.com/aws-samples/eks-workshop-v2/) via [Apache-2.0 license](https://github.com/aws-samples/eks-workshop-v2/?tab=Apache-2.0-1-ov-file#readme)
 
 ```
 aws cloudformation delete-stack --stack-name securitydojo-eks-workshop
