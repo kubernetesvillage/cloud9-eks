@@ -1,9 +1,9 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Creates a Cloud9 IDE
+Description: Cloud9 IDE For EKS Cluster
 Parameters:
   EksWorkshopC9InstanceType:
-    Description: Cloud9 instance type
+    Description: Cloud9 IDE
     Type: String
     Default: t3.small
     AllowedValues:
