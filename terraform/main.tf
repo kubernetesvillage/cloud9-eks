@@ -58,21 +58,13 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    private_group = {
-      name          = "private-node-group"
-      instance_types = ["t3.small"]
-      subnet_ids    = module.vpc.private_subnets
-      min_size      = 1
-      max_size      = 2
-      desired_size  = 1
-    },
     public_group = {
       name          = "public-node-group"
       instance_types = ["t3.small"]
       subnet_ids    = module.vpc.public_subnets
       min_size      = 1
       max_size      = 2
-      desired_size  = 1
+      desired_size  = 2
     }
   }
 }
