@@ -60,7 +60,7 @@ module "eks" {
   eks_managed_node_groups = {
     public_group = {
       name          = "public-node-group"
-      instance_types = ["t3.small"]
+      instance_types = ["t3.medium"]
       subnet_ids    = module.vpc.public_subnets
       min_size      = 1
       max_size      = 2
