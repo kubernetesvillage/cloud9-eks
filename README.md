@@ -31,12 +31,12 @@ Use the AWS CloudFormation quick-create links below to launch the desired enviro
    - For cloud9
 
     ```bash
-    aws cloudformation describe-stacks --stack-name securitydojo-eks-workshop --query 'Stacks[0].Outputs[?OutputKey==`Cloud9Url`].OutputValue' --output text
+    aws cloudformation describe-stacks --stack-name securitydojo-eks-workshop --query 'Stacks[0].Outputs[?OutputKey==`Cloud9Url`].OutputValue' --output text --region us-east-1
     ```
    - For VSCodeUrl
 
     ```bash
-    aws cloudformation describe-stacks --stack-name securitydojo-eks-workshop --query 'Stacks[0].Outputs[?OutputKey==`Cloud9Url`].OutputValue' --output text
+     aws cloudformation describe-stacks --stack-name securitydojo-eks-workshop --query 'Stacks[0].Outputs[?OutputKey==`IdeUrl`].OutputValue' --output text --region us-west-2
     ```
      
     
