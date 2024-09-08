@@ -24,14 +24,23 @@ Use the AWS CloudFormation quick-create links below to launch the desired enviro
    
 2. **Monitor the Stack Creation**: The stack will take about 5 minutes to complete.
 
-3. **Accessing the Environment**: Once the stack creation is complete, you can retrieve the Cloud9 or VSCode URL using the following command:
+3. **Accessing the Environment**: Once the stack creation is complete, you can retrieve the Cloud9 or VSCode URL using the following command.
+   
+   > Replace `Cloud9Url` with `VSCodeUrl` for VSCode instance.
+   
+   - For cloud9
 
     ```bash
     aws cloudformation describe-stacks --stack-name securitydojo-eks-workshop --query 'Stacks[0].Outputs[?OutputKey==`Cloud9Url`].OutputValue' --output text
     ```
+   - For VSCodeUrl
 
-    Replace `Cloud9Url` with `VSCodeUrl` for VSCode instance.
-
+    ```bash
+    aws cloudformation describe-stacks --stack-name securitydojo-eks-workshop --query 'Stacks[0].Outputs[?OutputKey==`Cloud9Url`].OutputValue' --output text
+    ```
+     
+    
+4. Open the URL & follow next steps from [terraform-eks](https://github.com/kubernetesvillage/terraform-eks).
 ---
 
 ## Cleanup
