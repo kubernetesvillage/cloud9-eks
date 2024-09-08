@@ -1,35 +1,54 @@
-# Cloud9 Instance via Cloudformation
+# Cloud9 and VSCode Instance Setup via CloudFormation
 
-> Cloudformation customised to setup cloud9 instance along with installed script.
+This repository contains CloudFormation templates to quickly set up Cloud9 and VSCode instances in your AWS environment. These instances are pre-configured with necessary permissions and are ready to be used for EKS-related workshops or development.
 
-## Setup 
+---
 
-- [Create AWS CloudFormation Stack](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=securitydojo-eks-workshop&templateURL=https://cf-templates-p4sqzd2p5kud-us-east-1.s3.amazonaws.com/eks-workshop-vscode.yaml) (Right-click and select "Open in new tab")
+## Quick-Launch Links for Cloud9 and VSCode
 
-- This CloudFormation stack will take roughly 5 minutes to deploy, and once completed it will create a instance with relevant permissions. Thus retrieve the URL for the IDE using below command.
-  
-```
-aws cloudformation describe-stacks --stack-name securitydojo-eks-workshop --query 'Stacks[0].Outputs[?OutputKey==`Cloud9Url`].OutputValue' --output text
-```
+Use the AWS CloudFormation quick-create links below to launch the desired environment in your preferred AWS region.
 
-## Cleaning up
+| Region         | Cloud9 Link                         | VSCode            |
+|----------------|-------------------------------------|---------------------------------------|
+| **us-east-1**  | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=securitydojo-eks-workshop&templateURL=https://cf-templates-p4sqzd2p5kud-us-east-1.s3.amazonaws.com/cloud9.yaml)  | XX  |
+| **us-west-2**  | XX | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=securitydojo-eks-workshop&templateURL=https://cf-templates-p4sqzd2p5kud-us-west-2.s3.amazonaws.com/eks-workshop-vscode.yaml) |
 
+[Reference](https://www.eksworkshop.com/docs/introduction/setup/your-account/)
+---
 
-> Make sure to run the respective clean up instructions to de-provision the lab EKS cluster before proceeding.
-> eksctl
-> Terraform
+## Setup Instructions
 
-- Open CloudShell via [AWS Console](https://console.aws.amazon.com/cloudshell/home).
+1. **Choose your Region**: Use the table above to pick your region (e.g., **us-east-1** or **us-west-2**) and launch the CloudFormation stack for Cloud9 or VSCode.
+   
+2. **Monitor the Stack Creation**: The stack will take about 5 minutes to complete.
 
-- Run the command to delete the CloudFormation Stack for cloud9 instance.
+3. **Accessing the Environment**: Once the stack creation is complete, you can retrieve the Cloud9 or VSCode URL using the following command:
+
+    ```bash
+    aws cloudformation describe-stacks --stack-name securitydojo-eks-workshop --query 'Stacks[0].Outputs[?OutputKey==`Cloud9Url`].OutputValue' --output text
+    ```
+
+    Replace `Cloud9Url` with `VSCodeUrl` for VSCode instance.
+
+---
+
+## Cleanup
+
+To avoid unnecessary costs, be sure to delete the CloudFormation stacks and any created AWS resources once you're finished.
+
+- To delete the Cloud9 or VSCode instance, run the following command:
+
+    ```bash
+    aws cloudformation delete-stack --stack-name securitydojo-eks-workshop
+    ```
+
+- Follow the cleanup instructions for the EKS resources, either through `eksctl` or Terraform.
+
+---
 
 ## License
 
-- This repository includes code from the [AWS EKS Workshop](https://github.com/aws-samples/eks-workshop-v2/), which is licensed under the Apache-2.0 License.
-- All original authors are credited, and modifications made here are documented in accordance with the Apache-2.0 License. This customized CloudFormation template has been adapted for use in the peachycloudsecurity EKS workshop.
-- Reference: https://www.eksworkshop.com
-    Credits: [AWS-Samples](https://github.com/aws-samples/eks-workshop-v2/) under the [Apache-2.0 license](https://github.com/aws-samples/eks-workshop-v2/?tab=Apache-2.0-1-ov-file#readme)
+- This repository uses code from the [AWS EKS Workshop](https://github.com/aws-samples/eks-workshop-v2/), licensed under the Apache-2.0 License.
+- The CloudFormation templates have been adapted for use in the **peachycloudsecurity** EKS workshop.
+- Credits: [AWS-Samples](https://github.com/aws-samples/eks-workshop-v2/) under the [Apache-2.0 license](https://github.com/aws-samples/eks-workshop-v2/?tab=Apache-2.0-1-ov-file#readme)
 
-```
-aws cloudformation delete-stack --stack-name securitydojo-eks-workshop
-```
